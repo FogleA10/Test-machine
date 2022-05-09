@@ -1,3 +1,5 @@
+const Employee = require("../lib/Employee")
+
 //name
 //id
 //email
@@ -5,12 +7,23 @@
 //getId()
 //getEmail()
 //getRole()//returns 'employee'
-cosnt Employee = require('../lib/Employee');
-test('creates a player object', () => {
-    const employee = new Player('Alec');
+
+test('tests employee constructor object', () => {
+    const employee = new Employee('Alec', 5, "alec@gmail.com");
     
     expect(employee.name).toBe('Alec');
-    expect(employee.Id).toEqual(expect.any(Number));
-    expect(employee.emailAddress).toEqual(expect.any(emailAddress));
-    expect(employee.officeNumber).toEqual(expect.any(officeNumber));
+    expect(employee.id).toEqual(expect.any(Number));
+    expect(employee.email).toBe('alec@gmail.com');
+    
   });
+
+  test('tests getName() method', () => {
+    const employee = new Employee('Alec', 5, "alec@gmail.com");
+    expect(employee.getName()).toBe('Alec');
+  }); 
+
+  test('test getId() method', () => {
+    const employee = new Employee('Alec', 5, "alec@gmail.com");
+    expect(employee.getId()).toBe(5);
+  })
+

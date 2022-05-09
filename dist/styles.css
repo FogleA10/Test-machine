@@ -1,5 +1,17 @@
 .hero{
-    border-style: solid;
-    border-color:red;
+    background-color:red;
     color: white;
+    height: 200px;
+    text-align:center;
+}
+.parent{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    
+
+}
+.parent article{
+    margin: 20px;
+
 }
