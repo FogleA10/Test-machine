@@ -7,5 +7,7 @@ test('creates a player object', () => {
   
     expect(engineer.name).toBe('Tammer');
     expect(engineer.githubUsername).toEqual(expect.any(githubUsername));
-    expect(engineer.githubLink).toEqual(expect.any(githubLink));
+    expect(engineer.githubLink).toBe(expect.any(githubLink));
   });
+
+  //should the github link be a toBe

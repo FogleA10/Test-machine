@@ -38,7 +38,7 @@ function managerPrompt(){
 }
 managerQuestions()
 
-
+//could create a loop, after choices, show display choices again
 function choicesPrompt(){
     inquirer.prompt(choicesQuestions)
     .then((data)=>{
@@ -48,12 +48,13 @@ function choicesPrompt(){
 }
 choicesQuestions()
 const choicesQuestions =[
-    { type:"",
-    name:"",
-    message:"?"
+    { type:"input",
+    name:"title",
+    message:"Would you like to add another employee team member?"
 
 },
 ]
+
 
 function internPrompt(){
 inquirer.prompt(internQuestions)
@@ -63,14 +64,27 @@ inquirer.prompt(internQuestions)
 })
 }
 internQuestions()
-const interQuestions = [
+const internQuestions = [
     {
-        type:"",
-        name:"",
-        message:"?"
+        type:"input",
+        name:"title",
+        message:"What is the school's name?"
     },
+    {
+        type:"input",
+        name:"title",
+        message:"what is your name?"
+    },
+    {
+        type:"input",
+        name:"title",
+        message:" What is your employees id number?"
+    },
+
 ]
 
+
+//link the github in here
 function engineerPrompt(){
     inquirer.prompt(engineerQuestions)
 .then((data) =>{
@@ -80,12 +94,13 @@ function engineerPrompt(){
 }
 engineerQuestions()
 const engineerQuestions = [
-    {type:"",
-    name:"",
-    message:""
-
+    {type:"input",
+    name:"title",
+    message:"What is your github username?"
     }
 ]
+
+
 
 .then((data)=> {
     var employee = new Employee( data.name, data.id, data.email)
