@@ -4,11 +4,13 @@ const path = require("path")
 const pageTemplate = require("./src/page-template")
 const Engineer = require("./lib/Engineer")
 const Inter = require("./lib/Intern")
-const Manager = require("./lib/Manager")
+const Manager = require("./lib/Manager");
+const createHTMLString = require('./src/page-template');
 
 //If you have any questions, contact me by email at [${data.email}](mailto:${data.email}) or on github at [${data.github}](https://github.com/${data.github}).
 
 var employeeArray = []
+
 const managerQuestions = [
     {
         type: "input",
@@ -36,34 +38,63 @@ const managerQuestions = [
     //what other team mates would you like to add in its own function, keeps asking the same question
     //different quesitons array for the engineer, Intern,finish manager. 
 ]
+
 async function managerPrompt() {
     var data = await inquirer.prompt(managerQuestions)
- console.log(data);   
+    console.log(data);   
          
             var manager = new Manager(data.name, data.id, data.email, data.officeNumber)
             employeeArray.push(manager)
         
 }
+
 //managerPrompt()
 const choicesQuestions = [
     {
         type: "input",
         name: "newMember",
         message: "Would you like to add another employee team member?"
+    },
+    {
+        type:"list",
+        name:"employee",
+        message:" What kind of employee would you like to add?",
+        choices: ["Intern", "Engineer", "Manager"]
 
-    }
+    }//break this and add another inquirer.prompt
 
 ]
+async function newMember(){
+    employeeArray();
+}
 //need a function to choose what kind of team member i want to add teammember prompt (list)
 //could create a loop, after choices, show display choices again
 async function choicesPrompt() {
     var data = await inquirer.prompt(choicesQuestions)
     if (data.newMember == "yes"){
+        if (data.employee == "Intern"){
+            internPrompt()
+        }
+        if(data.employee=="Engineeer"){
+            engineerPrompt()
+        }
+        if(data.employee == "Manager"){
+            managerPrompt()
+        }
         
+    }else if(data.newMemeber == "no"){
+        fs.writeFileSync('./dist', createHTMLString(employeeArray), 'utf-8')
     }
-    
-    
 }
+    
+
+
+    
+    
+    
+
+
+
 //choicesPrompt()
 
 
@@ -94,7 +125,7 @@ const internQuestions = [
 async function internPrompt() {
     var data = await inquirer.prompt(internQuestions)
         
-            var intern = new intern(data.name, data.id, data.email, data.school)
+            var intern = new Intern(data.name, data.id, data.email, data.school)
             employeeArray.push(internQuestions)
         
 }

@@ -14,5 +14,13 @@
 }
 .parent article{
     margin: 20px;
-
+√
 }
+#title{
+
+    background-color:blue;
+    color:white;
+    text-align:center;
+    font-size:30px;
+}
+
