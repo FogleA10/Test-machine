@@ -2,8 +2,10 @@
 //copy all in html and put it in here in strign thng 
 //like markdown email and github do herere
 
-function githubLink() {
-    return``
+function githubLink(data) {
+    return`
+    `
+    
     //create a tag${link}
 }
 
@@ -12,13 +14,28 @@ const generateTeam = (team) => {
 
     const newTeamMembersArr = team.map(member => {
         console.log(member) 
-        // {
-        //     name: "Fred",
-        //     role: "Engineer"
-        // }
+         {
+             name: "Tammer"
+             role: "Engineer"
+         }
+        { 
+            name: "Alec"
+            role: "Employee"
+
+        }
+        {
+            name: "John"
+            role: "Intern"
+
+        }
+        {
+            name: "David"
+            role: "Manager"
+        }
         return `
             <div class="card">
                 ${member.name}
+                ${member.role}
             </div>
         `
     });
