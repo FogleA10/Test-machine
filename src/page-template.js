@@ -25,7 +25,7 @@ const generateTeam = (team) => {
     
             <article id="intern" class="card" style="width: 18rem;">
                 <div class="manager-bio card-title">
-                    <h1 id="title" ${intern.getName()}</h1>
+                    <h1 id="title">${intern.getName()}</h1>
                     <h3>Intern</h3>
                 </div>
                 <p class="card-text"> Id: ${intern.getId()}</p>
