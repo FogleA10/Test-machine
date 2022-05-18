@@ -111,9 +111,11 @@ const createHTMLString = (team) => {
     
     <body>
         <header class="hero"> My Team</header>
+        <div class="parent">
+
     
         ${generateTeam(team)}
-        
+        </div>
     </body>
     
     </html>`
