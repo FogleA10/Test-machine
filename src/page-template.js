@@ -2,43 +2,91 @@
 //copy all in html and put it in here in strign thng 
 //like markdown email and github do herere
 
-function githubLink(data) {
-    return`
-    `
-    
-    //create a tag${link}
-}
+
 
 const generateTeam = (team) => {
     console.log(team);
 
-    const newTeamMembersArr = team.map(member => {
-        console.log(member) 
-         {
-             name: "Tammer"
-             role: "Engineer"
-         }
-        { 
-            name: "Alec"
-            role: "Employee"
 
-        }
-        {
-            name: "John"
-            role: "Intern"
-
-        }
-        {
-            name: "David"
-            role: "Manager"
-        }
+    const generateManager = manager => {
         return `
-            <div class="card">
-                ${member.name}
-                ${member.role}
+        <article id="manager" class="card" style="width: 18rem;">
+            <div class="manager-bio card-title">
+                <h1 id="title">${manager.getName()}</h1>
+                <h3>Manager</h3>
             </div>
-        `
-    });
+            <p class="card-text"> Id: ${manager.getId()}</p>
+            <p class="card-text">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></p>
+            <p class="card-text">Office Number: ${manager.getOfficeNumber()}</p>
+        </article>`
+    }
+    const generateIntern = intern => {
+        return`
+    
+            <article id="intern" class="card" style="width: 18rem;">
+                <div class="manager-bio card-title">
+                    <h1 id="title" ${intern.getName()}</h1>
+                    <h3>Intern</h3>
+                </div>
+                <p class="card-text"> Id: ${intern.getId()}</p>
+                <p class="card-text">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
+                <p class="card-text">School: ${intern.getSchool()}</p>
+            </article>`
+    }
+    const generateEngineer = engineer => {
+        return `
+        <article id="engineer" class="card" style="width: 18rem;">
+            <div class="manager-bio card-title">
+                <h1 id="title">${engineer.getName()}</h1>
+                <h3>Engineer</h3>
+            </div>
+            <p class="card-text">Id: ${engineer.getId()}</p>
+            <p class="card-text">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></p>
+            <p class="card-text">Github: <a
+            href="http://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></p>
+        </article>`
+    }
+
+    const newTeamMembersArr = []
+    newTeamMembersArr.push(team.filter(employee => employee.getRole()==="Manager")
+       .map(manager => generateManager(manager)).join(''));
+
+       newTeamMembersArr.push(team.filter(employee => employee.getRole()==="Intern")
+       .map(intern => generateIntern(intern)).join(''));
+
+       newTeamMembersArr.push(team.filter(employee => employee.getRole()==="Engineer")
+       .map(engineer => generateEngineer(engineer)).join(''));
+       
+
+
+    // const newTeamMembersArr = team.map(member => {
+    //     console.log(member) 
+    //      {
+    //          name: "Tammer"
+    //          role: "Engineer"
+    //      }
+    //     { 
+    //         name: "Alec"
+    //         role: "Employee"
+
+    //     }
+    //     {
+    //         name: "John"
+    //         role: "Intern"
+
+    //     }
+    //     {
+    //         name: "David"
+    //         role: "Manager"
+    //     }
+    //     return `
+    //         <div class="card">
+    //             ${member.name}
+    //             ${member.role}
+                
+    //         </div>
+    //     `
+    // });
 
     return newTeamMembersArr.join("");
 

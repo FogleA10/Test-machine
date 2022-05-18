@@ -3,7 +3,7 @@ const fs = require("fs")
 const path = require("path")
 const pageTemplate = require("./src/page-template")
 const Engineer = require("./lib/Engineer")
-const Inter = require("./lib/Intern")
+const Intern = require("./lib/Intern")
 const Manager = require("./lib/Manager");
 const createHTMLString = require('./src/page-template');
 
@@ -14,12 +14,12 @@ var employeeArray = []
 const managerQuestions = [
     {
         type: "input",
-        name: "title",
+        name: "name",
         message: "What is the manager's name?"
     },
     {
         type: "input",
-        name: "Id",
+        name: "id",
         message: "What is the Manager's Id?"
     },
     {
@@ -45,21 +45,22 @@ async function managerPrompt() {
          
             var manager = new Manager(data.name, data.id, data.email, data.officeNumber)
             employeeArray.push(manager)
+            choicesPrompt()
         
 }
 
 //managerPrompt()
 const choicesQuestions = [
-    {
-        type: "input",
-        name: "newMember",
-        message: "Would you like to add another employee team member?"
-    },
+    // {
+    //     type: "input",
+    //     name: "newMember",
+    //     message: "Would you like to add another employee team member?"
+    // },
     {
         type:"list",
         name:"employee",
         message:" What kind of employee would you like to add?",
-        choices: ["Intern", "Engineer", "Manager"]
+        choices: ["Intern", "Engineer",  "Done"]
 
     }//break this and add another inquirer.prompt
 
@@ -71,21 +72,22 @@ async function newMember(){
 //could create a loop, after choices, show display choices again
 async function choicesPrompt() {
     var data = await inquirer.prompt(choicesQuestions)
-    if (data.newMember == "yes"){
+    // if (data.newMember == "yes"){
         if (data.employee == "Intern"){
             internPrompt()
         }
-        if(data.employee=="Engineeer"){
+        if(data.employee=="Engineer"){
             engineerPrompt()
         }
-        if(data.employee == "Manager"){
-            managerPrompt()
-        }
-        
-    }else if(data.newMemeber == "no"){
-        fs.writeFileSync('./dist', createHTMLString(employeeArray), 'utf-8')
+        // if(data.employee == "Manager"){
+        //     managerPrompt()
+        // }
+        if(data.employee == "Done"){
+    // }else if(data.newMemeber == "no"){
+        fs.writeFileSync('./dist/index.html', createHTMLString(employeeArray), 'utf-8')
     }
 }
+//need to fix the "no" 
     
 
 
@@ -98,42 +100,45 @@ async function choicesPrompt() {
 //choicesPrompt()
 
 
-const internQuestions = [
-    {
-        type: "input",
-        name: "schoolName",
-        message: "What is the school's name?"
-    },
-    {
-        type: "input",
-        name: "name",
-        message: "what is your name?"
-    },
-    {
-        type: "input",
-        name: "Id",
-        message: " What is your employees id number?"
-    },
-    {
-        type: "input",
-        name: "email",
-        message: " What is your employee email?"
-    }
 
-]
 //internPrompt()
 async function internPrompt() {
+    const internQuestions = [
+        {
+            type: "input",
+            name: "schoolName",
+            message: "What is the school's name?"
+        },
+        {
+            type: "input",
+            name: "name",
+            message: "what is your name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: " What is your employees id number?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: " What is your employee email?"
+        }
+    
+    ]
+
     var data = await inquirer.prompt(internQuestions)
         
-            var intern = new Intern(data.name, data.id, data.email, data.school)
-            employeeArray.push(internQuestions)
+            var intern = new Intern(data.name, data.id, data.email, data.schoolName)
+            employeeArray.push(intern)
+            choicesPrompt()
         
 }
 
 const engineerQuestions = [
     {
         type: "input",
-        name: "githubUsername",
+        name: "github",
         message: "What is your github username?"
     },
     {
@@ -143,7 +148,7 @@ const engineerQuestions = [
     },
     {
         type: "input",
-        name: "Id",
+        name: "id",
         message: "What is your employee id?"
     },
     {
@@ -158,7 +163,8 @@ async function engineerPrompt() {
     var data = await inquirer.prompt(engineerQuestions)
         
             var engineer = new Engineer(data.name, data.id, data.email, data.github)
-            employeeArray.push(engineerQuestions)
+            employeeArray.push(engineer)
+            choicesPrompt()
         
 }
 //engineerPrompt()
@@ -174,6 +180,7 @@ async function engineerPrompt() {
 //inter, engineer
 async function init(){
     await managerPrompt()
-    choicesPrompt()
+
+    //choicesPrompt()
 }
 init();

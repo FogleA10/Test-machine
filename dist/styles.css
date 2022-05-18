@@ -1,26 +1,27 @@
-.hero{
-    background-color:red;
+.hero {
+    background-color: red;
     color: white;
     height: 200px;
-    text-align:center;
+    text-align: center;
     font-size: 50px;
 }
-.parent{
-    display:flex;
-    flex-wrap:wrap;
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    
+
 
 }
-.parent article{
+
+.parent article {
     margin: 20px;
-√
-}
-#title{
-
-    background-color:blue;
-    color:white;
-    text-align:center;
-    font-size:30px;
 }
 
+#title {
+
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
